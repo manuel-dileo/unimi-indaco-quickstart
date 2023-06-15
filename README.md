@@ -16,11 +16,9 @@ This guide explains how to:
  ## Log on to INDACO
 
 You can SSH into INDACO without using a VPN. To do so, you can use the command 
-
     ```
     ssh -L 5000:127.0.0.1:3389 name.surname@login.indaco.unimi.it
     ``` 
-    
 For the rest of the guide, we will just use shell commands. If you are not comfortable with shells you can read this [MIT guide](https://missing.csail.mit.edu/).
 
 ## Important things to note first
