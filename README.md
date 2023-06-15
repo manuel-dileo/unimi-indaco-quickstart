@@ -4,7 +4,6 @@
 
 This guide explains how to:
  - Log on to the cluster
- - Set up your bash environment
  - Set up a conda environment manager
  - Provides examples of
 	 - Interactive sessions with and without a GPU (srun)
@@ -25,52 +24,34 @@ For the rest of the guide, we will just use shell commands. If you are not comfo
 ![Cluster Diagram](cdt_cluster_diag.png)
 This is an approximate setup of how INDACO is arranged.
 
-- The initial node you log into is called the __head node__ (named `mlp` at the time of writing) - __do not__ run heavy processes on here. This node is only used for sending jobs to other nodes in the cluster
+- The initial node you log into is called the __head node__ - __do not__ run heavy processes on here. This node is only used for sending jobs to other nodes in the cluster
 - The filesystem you have access to when you log in is identical on all the nodes you can access - it is a __distributed__ filesystem. As such, it is very slow (because it must appear the same everywhere)!
     - Avoid reading and writing files frequently on this filesystem
     - Instead, when running a job on a node, use its scratch disk and only move files to the shared filesystem infrequently. The scratch disk is located at `/disk/scratch` normally.
 - Please skim-read this for best practice: http://computing.help.inf.ed.ac.uk/cluster-tips
 
+## Project directory organization
+The home directory provides a limited space of 10GB. In the home directory, you can not install any new software. To be able to setup a conda environment and install new software, move to the directory of your project with
+```
+cd projectname
+```
+On the project directory user have access to three different storage area:
+- A scratch area that can be used as a temporary area. Upon request, INDACO staff can delete its content periodically.
+- A backup area that holds a replica of the data already present in other systems external to Indaco. Please take a look at the README available in the related folder.
+- A project area
 
-## Quick Bash Environment Setup
+- ## Environment modules
+Indaco provides several modules to allow the user to prepare the calculation environment according to the application, library, or development tool s/he intends to use. 
 
-1. Find the name of your cluster. For example, it may be `cdtcluster`, `mlp`, `ilcc-cluster`, see http://computing.help.inf.ed.ac.uk/cluster-computing for more. Throughout this guide I will assume you have either set a variable called CLUSTER_NAME (or you'll just replace that in the instructions) e.g `CLUSTER_NAME=mlp`.
-2. Run this line to SSH into the cluster: `ssh ${USER}@${CLUSTER_NAME}.inf.ed.ac.uk`
-3. Create a Bash profile file so that the correct Bash setup runs when you login:
-    - `touch .bash_profile`
-    - Open the `.bash_profile` file and paste the following code into it. If we are using Vim:
-        - `vim .bash_profile`
-        - Press the `i` button so that you can insert text into the file (you'll see the word INSERT at the bottom of the screen)
-        - Paste:
-        ```
-        if [ -f ~/.bashrc ]; then
-            source ~/.bashrc
-        fi
-        ```
-        - Press ESC then `!wq` to exit Vim.
-4. Install miniconda3:
-    - Download and run Miniconda installer
-    ```
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 
-    bash Miniconda3-latest-Linux-x86_64.sh
-    ```
-    - Accept the licensing terms during installation.
+The ```module avail``` command provides the list of all the available modules. The ```module load name``` command allows you to load the specified module. 
 
-5. Install the `cluster-scripts` repository containing useful scripts and the demos.
-    - Git clone to your cluster user space
-    ```
-    git clone https://github.com/cdt-data-science/cluster-scripts
-    cd ./cluster-scripts
-    ```
-    - __Follow the instructions in `README.md`__
-6. Re-source your Bash profile
-    ```
-    source ~/.bashrc
-    ```
-7. You can now play around with commands on the cluster (try running `free-gpus`, `cluster-status`)
-8. You should be ready to go!
+To run ML experiments with PyTorch we need at least to load the python3 and CUDA modules. To do so, you can use the following commands:
+```
+module load python3/anaconda/3-2022
+module load CUDA/11.7
+```
 
-
+## Setup conda environment
 ## What's Next? Practical examples!
 
 You can head straight to the cluster-scripts experiments repository here: 
