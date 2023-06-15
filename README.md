@@ -1,52 +1,36 @@
-# Using GPUs for Machine Learning: Quick Start
-## 3rd March 2022
-### Tom Sherborne (adapted from James Owers)
+# Using UNIMI INDACO for Machine Learning: Quick Start
+## 15 June 2023
+### Manuel Dileo (adapted from Tom Sherborn, University of Edinburgh)
 
 This guide explains how to:
  - Log on to the cluster
  - Set up your bash environment
  - Set up a conda environment manager
- - Get some useful student written scripts
  - Provides examples of
 	 - Interactive sessions with and without a GPU (srun)
-	 - Running scripts on the cluster non-interactively (sbatch)
- - Set up jupyter notebooks to run on the cluster, but be easily accessible from anywhere
+	 - Running scripts on the cluster non-interactively (batch)
+ 
+ ## Disclaimer
+ This quick start is strongly related to running machine learning experiments and it is not official. For official user guides, you can refer to the [INDACO website](https://www.indaco.unimi.it/index.php/documentazione/).
 
- ## First Steps 
+ ## Log on to INDACO
 
-The rest of this guide is designed to help you understand how you can use the cluster but we will cover most of this material in the talk. You can think of this document as a written version of most of what will be covered but not everything. 
-
-__At a minimum, it would be very helpful if you can do these 3 tasks prior to the talk:__
-
- 1. Check you can SSH into mlp.inf.ed.ac.uk. This will probably need to be from a DICE machine or a machine within the Informatics VPN (setup help for this is below). 
-    - If you cannot access this machine, please file a [Support ticket](https://www.inf.ed.ac.uk/systems/support/form/). You’ll be limited during the talk if you cannot experience the cluster for yourself.
-    - If you are not comfortable with shell access then read this [MIT guide](https://missing.csail.mit.edu/) for shells and [here](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-to-connect-to-a-remote-server) for SSH.
- 2. Clone the [cluster-scripts](https://github.com/cdt-data-science/cluster-scripts) repository into your own workspace using Git.
-    - We will use resources within this repository during the session so make sure you have it now. 
-    - Run the following code line in the directory where you want these scripts to live (usually the top-level directory)
+You can SSH into INDACO without using a VPN. To do so, you can use the command
     ```
-    git clone https://github.com/cdt-data-science/cluster-scripts
+    ssh -L 5000:127.0.0.1:3389 name.surname@login.indaco.unimi.it
     ```
- 3. Install Anaconda within the cluster:
-    - The clusters can’t use the same environment as DICE, so you need to reinstall this for `mlp.inf.ed.ac.uk`.
-    - More details are below but the gist is these two lines:
-    ```
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 
-    bash Miniconda3-latest-Linux-x86_64.sh
-    ```
-    - Installing Conda can be _very_ slow, so please get this done before we start.
-
+For the rest of the guide, we will just use shell commands. If you are not comfortable with shells you can read this [MIT guide](https://missing.csail.mit.edu/).
 
 ## Important things to note first
 
-![Cluster Diagram](./imgs/cdt_cluster_diag.png)
-This is an approximate setup of how the cluster is arranged for the CDT cluster (`albert`). The PGR Cluster we are using today is set up similarly.
+![Cluster Diagram](cdt_cluster_diag.png)
+This is an approximate setup of how INDACO is arranged.
 
 - The initial node you log into is called the __head node__ (named `mlp` at the time of writing) - __do not__ run heavy processes on here. This node is only used for sending jobs to other nodes in the cluster
 - The filesystem you have access to when you log in is identical on all the nodes you can access - it is a __distributed__ filesystem. As such, it is very slow (because it must appear the same everywhere)!
     - Avoid reading and writing files frequently on this filesystem
     - Instead, when running a job on a node, use its scratch disk and only move files to the shared filesystem infrequently. The scratch disk is located at `/disk/scratch` normally.
-- Please skim read this for best practice: http://computing.help.inf.ed.ac.uk/cluster-tips
+- Please skim-read this for best practice: http://computing.help.inf.ed.ac.uk/cluster-tips
 
 
 ## Quick Bash Environment Setup
