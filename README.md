@@ -40,15 +40,16 @@ On the project directory user have access to three different storage area:
 - A backup area that holds a replica of the data already present in other systems external to Indaco. Please take a look at the README available in the related folder.
 - A project area
 
-- ## Environment modules
+## Environment modules
 Indaco provides several modules to allow the user to prepare the calculation environment according to the application, library, or development tool s/he intends to use. 
 
 The ```module avail``` command provides the list of all the available modules. The ```module load name``` command allows you to load the specified module. 
 
-To run ML experiments with PyTorch we need at least to load the python3 and CUDA modules. To do so, you can use the following commands:
+To run ML experiments with PyTorch we need to load at least the following modules:
 ```
 module load python3/anaconda/3-2022
 module load CUDA/11.7
+module load intel/parallel_2020
 ```
 
 ## Setup conda environment
