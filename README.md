@@ -54,7 +54,7 @@ module load intel/parallel_2020
 
 ## Setup a conda environment with PyTorch
 
-1. Let's define where the pkgs should be written (projectname is the name of your project
+1. Let's define where the pkgs should be written
 ```
 mkdir -p /gpfs/home/projects/${projectname}/folder/pkg
 ```
