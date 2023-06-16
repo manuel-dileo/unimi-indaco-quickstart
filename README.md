@@ -43,7 +43,7 @@ On the project directory user have access to three different storage area:
 ## Environment modules
 Indaco provides several modules to allow the user to prepare the computing environment according to the application, library, or development tool s/he intends to use. 
 
-The ```module avail``` command provides the list of all the available modules. The ```module load name``` command allows you to load the specified module. 
+The ```module avail``` command provides the list of all the available modules. The ```module load ${name}``` command allows you to load the specified module. 
 
 To run ML experiments with PyTorch we need to load at least the following modules:
 ```
@@ -98,7 +98,7 @@ Get some code to run mnist in pytorch and run it:
     ```
 2. Run example MNIST code:
     - `cd ~/${projectname}/projects/examples/mnist`
-    - `~/${projectname}/folder/pkg/mypt`
+    - `conda activate ~/${projectname}/folder/pkg/mypt`
     - `python main.py`
 
 Please note: this is going to download data to the Distributed Filesystem (i.e. in your current working directory) and the code will access the data from there: this is not good practice on this cluster (because it will be very slow) - best practice says to store and access data in the scratch space of the node you’re running on
