@@ -135,7 +135,10 @@ Repeat the above but this time using an sbatch script (non-interactive session).
  - Check out the log file with `cat slurm-*.out`. This will be in the working directory you were inside when you ran the `sbatch` command.
 
 ## Useful Documentation and Links
-
+```
+projectstatus ${projectname}
+```
+provides how many hours you consumed
 ### INDACO support
  - Main page: https://www.indaco.unimi.it/
  - User guides: https://www.indaco.unimi.it/index.php/documentazione/
