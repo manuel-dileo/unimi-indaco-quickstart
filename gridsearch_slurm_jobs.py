@@ -63,8 +63,6 @@ def main(argv):
 #SBATCH -t 8:00:00 # time requested in hours:minutes:seconds
 #SBATCH --array 1-{nb_jobs}
 
-module load python3/anaconda/3-2022
-module load CUDA/11.7
 module load intel/parallel_2020
 
 echo "Setting up bash environment"
