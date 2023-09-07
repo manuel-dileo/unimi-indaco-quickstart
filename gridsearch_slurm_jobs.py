@@ -57,7 +57,7 @@ def main(argv):
 
 #SBATCH --output=/home/users/%u/{project_name}/slogs/example-%A_%a.out
 #SBATCH --error=/home/users/%u/{project_name}/slogs/example-%A_%a.err
-ls#SBATCH --partition=light
+#SBATCH --partition=light
 #SBATCH --mem=8GB # memory
 #SBATCH --cpus-per-task=4 # number of cpus to use - there are 32 on each node.
 #SBATCH -t 8:00:00 # time requested in hours:minutes:seconds
