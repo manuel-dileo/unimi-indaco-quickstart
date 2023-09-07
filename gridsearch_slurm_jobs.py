@@ -26,8 +26,8 @@ def to_cmd(c, _path=None):
 def main(argv):
     project_name = "GNN4BioKG" #change with your project name
     hyp_space = dict(
-        lr = [1, 1e-1, 1e-2, 1e-3, 1e-4],
-        batch_size = [64, 128, 256, 512]
+        lr = [1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5, 1e-6],
+        batch_size = [16, 32, 64, 128, 256, 512, 1024]
     )
 
     configurations = list(cartesian_product(hyp_space))
@@ -37,17 +37,14 @@ def main(argv):
         #os.makedirs(path)
 
     command_lines = set()
-    for i in range(10): #10 is the number of runs
-        for cfg in configurations:
-            cmd = to_cmd(cfg)
-            if cmd is not None:
-                command_line = f'{cmd} > output.txt 2>&1'
-                command_lines |= {command_line}
+    for cfg in configurations:
+        cmd = to_cmd(cfg)
+        if cmd is not None:
+            command_line = f'{cmd} > output.txt 2>&1'
+            command_lines |= {command_line}
 
     # Sort command lines and remove duplicates
-    #sorted_command_lines = sorted(command_lines)
-
-    sorted_command_lines = list(command_lines)
+    sorted_command_lines = sorted(command_lines)
 
     import random
     rng = random.Random(0)
