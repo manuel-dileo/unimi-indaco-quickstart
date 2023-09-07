@@ -45,7 +45,9 @@ def main(argv):
                 command_lines |= {command_line}
 
     # Sort command lines and remove duplicates
-    sorted_command_lines = sorted(command_lines)
+    #sorted_command_lines = sorted(command_lines)
+
+    sorted_command_lines = command_lines
 
     import random
     rng = random.Random(0)
