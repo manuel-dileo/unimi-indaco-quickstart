@@ -134,6 +134,14 @@ Repeat the above but this time using an sbatch script (non-interactive session).
  - You can get information about your jobs with `sinfo -u ${name.surname}`
  - Check out the log file with `cat slurm-*.out`. This will be in the working directory you were inside when you ran the `sbatch` command.
 
+#### Array jobs
+
+We provide a python script to generate slurm array jobs to conduct a grid search hyperparameter tuning on MNIST pytorch example. To generate the array job script run the following commands:
+- `cd ~/${projectname}/projects/examples/mnist`
+- `python gridsearch_slurm_jobs.py > gridsearch_mnist.sh`
+- `chmod +x gridsearch_mnist.sh`
+- `sbatch gridsearch_mnist.sh`
+
 ## Useful Documentation and Links
 ```
 projectstatus ${projectname}
