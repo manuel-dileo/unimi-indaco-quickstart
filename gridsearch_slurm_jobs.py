@@ -67,7 +67,7 @@ echo "Setting up bash environment"
 source ~/.bashrc
 set -e # fail fast
 
-conda activate mypt
+conda activate $HOME/{projectname}/folder/pkg/mypt
 
 export LANG="en_US.utf8"
 export LANGUAGE="en_US:en"
