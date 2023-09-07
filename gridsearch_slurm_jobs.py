@@ -20,7 +20,7 @@ def summary(configuration):
 
 def to_cmd(c, _path=None):
     command = f'PYTHONPATH=. python3 main.py ' \
-              f'--lr {c["lr"]} --batch_size {c["batch_size"]}'
+              f'--lr {c["lr"]} --batch-size {c["batch_size"]}'
     return command
 
 def main(argv):
