@@ -1,5 +1,5 @@
 # Using UNIMI INDACO for Machine Learning: Quick Start
-## 15 June 2023
+## 09 September 2023
 ### Manuel Dileo (adapted from Tom Sherborn, University of Edinburgh)
 
 This guide explains how to:
