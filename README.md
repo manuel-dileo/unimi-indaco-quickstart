@@ -8,7 +8,7 @@ This guide explains how to:
  - Provides examples of
 	 - Interactive sessions with and without a GPU (srun)
 	 - Running scripts on the cluster non-interactively (batch)
-         - Running scripts with slurm array jobs
+- Running scripts with slurm array jobs
  
  ## Disclaimer
  This quick start is strongly related to running machine learning experiments and it is not official. For official user guides, you can refer to the [INDACO website](https://www.indaco.unimi.it/index.php/documentazione/).
