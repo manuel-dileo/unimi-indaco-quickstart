@@ -61,6 +61,7 @@ def main(argv):
 #SBATCH --cpus-per-task=4 # number of cpus to use - there are 32 on each node.
 #SBATCH -t 8:00:00 # time requested in hours:minutes:seconds
 #SBATCH --array 1-{nb_jobs}
+#SBATCH --account={project_name}
 
 module load intel/parallel_2020
 
